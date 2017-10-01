@@ -8,17 +8,17 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type Repos_user = {|
-  +repositories: {|
+export type Users_data = {|
+  +search: {|
     +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string;
-        +name: string;
-      |};
+      +cursor: string;
+      +node: ?{| |};
     |}>;
     +pageInfo: {|
+      +startCursor: ?string;
       +endCursor: ?string;
       +hasNextPage: boolean;
+      +hasPreviousPage: boolean;
     |};
   |};
 |};
@@ -29,13 +29,18 @@ const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
+      "name": "cursor",
+      "type": "String"
+    },
+    {
+      "kind": "RootArgument",
       "name": "count",
       "type": "Int"
     },
     {
       "kind": "RootArgument",
-      "name": "cursor",
-      "type": "String"
+      "name": "queryString",
+      "type": "String!"
     }
   ],
   "kind": "Fragment",
@@ -46,50 +51,61 @@ const fragment /*: ConcreteFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "repositories"
+          "search"
         ]
       }
     ]
   },
-  "name": "Repos_user",
+  "name": "Users_data",
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "repositories",
-      "args": null,
-      "concreteType": "RepositoryConnection",
-      "name": "__Repos_repositories_connection",
+      "alias": "search",
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "query",
+          "variableName": "queryString",
+          "type": "String!"
+        },
+        {
+          "kind": "Literal",
+          "name": "type",
+          "value": "USER",
+          "type": "SearchType!"
+        }
+      ],
+      "concreteType": "SearchResultItemConnection",
+      "name": "__Users_search_connection",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
           "args": null,
-          "concreteType": "RepositoryEdge",
+          "concreteType": "SearchResultItemEdge",
           "name": "edges",
           "plural": true,
           "selections": [
             {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "cursor",
+              "storageKey": null
+            },
+            {
               "kind": "LinkedField",
               "alias": null,
               "args": null,
-              "concreteType": "Repository",
+              "concreteType": null,
               "name": "node",
               "plural": false,
               "selections": [
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "id",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "name",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "GitUser",
+                  "args": null
                 }
               ],
               "storageKey": null
@@ -109,6 +125,13 @@ const fragment /*: ConcreteFragment*/ = {
               "kind": "ScalarField",
               "alias": null,
               "args": null,
+              "name": "startCursor",
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
               "name": "endCursor",
               "storageKey": null
             },
@@ -118,6 +141,13 @@ const fragment /*: ConcreteFragment*/ = {
               "args": null,
               "name": "hasNextPage",
               "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "hasPreviousPage",
+              "storageKey": null
             }
           ],
           "storageKey": null
@@ -126,7 +156,7 @@ const fragment /*: ConcreteFragment*/ = {
       "storageKey": null
     }
   ],
-  "type": "User"
+  "type": "Query"
 };
 
 module.exports = fragment;

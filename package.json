@@ -12,6 +12,7 @@
   "author": "liminal18",
   "license": "ISC",
   "dependencies": {
+    "bulma": "^0.5.3",
     "es6-promise": "^4.1.1",
     "graphql": "^0.10.5",
     "isomorphic-fetch": "^2.2.1",
