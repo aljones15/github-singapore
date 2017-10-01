@@ -2,10 +2,20 @@ import React from 'react';
 import {QueryRenderer, graphql} from 'react-relay';
 import environment from 'Services/Environment/';
 import {rootQuery, Users} from 'Containers/Pagination/Users';
+
+/**
+* Root is simply the QueryRender
+* it takes in the network environment
+* and inits the first calls to the github api
+*/
 class Root extends React.PureComponent{
+  /**
+  * render
+  * @return {Object} a jsx element
+  */
   render(){
     return(
-      <div id='root' className='root container' onScroll={(e) => { console.log('scroll'); }}>
+      <div id='root' className='root container'>
         <QueryRenderer 
           environment={environment}
           query={rootQuery}
