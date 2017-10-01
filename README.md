@@ -13,7 +13,7 @@ npm start
 ```
 
 The server should run on: http://localhost:8081/
-
+Demo is up here: http://githubsingapore.nfshost.com/
 # Stack
 - Webpack
 - Bulma css
