@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Containers/Root/';
-
+const bulma = require('bulma/css/bulma.css');
 /***
 * Creates a Container for the React App automatically
 */

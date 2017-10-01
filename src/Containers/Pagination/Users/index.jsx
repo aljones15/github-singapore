@@ -14,18 +14,19 @@ export const rootQuery = graphql`
 class UsersView extends React.Component {
   makeUsers() {
     if(this.props.data.search) {
-      return this.props.data.search.edges.map((r, index) => <GitUser data={r.node} key={r.cursor + '_' + index}></GitUser>);
+      return this.props.data.search.edges.map(
+        (r, index) => <GitUser order={index} data={r.node} key={r.cursor + '_' + index}></GitUser>
+      );
     } return null;
   }
   render(){
-    console.log(this.props);
     return(
-      <div>
-        <h1>Users</h1>
+      <div className='columns is-multiline' onScroll={(e) => { console.log('scroll'); }}>
         {this.makeUsers()}
         <button
+          className='column button is-primary is-focused'
           onClick={() => this._loadMore()}
-        > Load More </button>
+        > <strong>More</strong> </button>
       </div>);
   }
   _loadMore(){
@@ -34,12 +35,8 @@ class UsersView extends React.Component {
     }
 
     this.props.relay.loadMore(
-      10, // Fetch the next 10 feed items
-      (e) => {
-        console.log('loadmore');
-        console.log(arguments);
-        console.log(e);
-      },
+      12, // Fetch the next 10 feed items
+      (e) => {console.log(e);},
     );
   }
 }

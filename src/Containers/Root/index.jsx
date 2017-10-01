@@ -5,11 +5,11 @@ import {rootQuery, Users} from 'Containers/Pagination/Users';
 class Root extends React.PureComponent{
   render(){
     return(
-      <div id='root' className='root'>
+      <div id='root' className='root container' onScroll={(e) => { console.log('scroll'); }}>
         <QueryRenderer 
           environment={environment}
           query={rootQuery}
-           variables={{count: 10, cursor: null, queryString: 'location:singapore'}}
+           variables={{count: 12, cursor: null, queryString: 'location:singapore'}}
            render={({error, props}) => {
              if(error){
                console.log('QueryRenderer -> error');
@@ -18,6 +18,7 @@ class Root extends React.PureComponent{
              } else if(props){
                return(
                  <div>
+                   <h1 className='title'>Users</h1>
                    <Users data={props} />                 
                  </div>   
               );
