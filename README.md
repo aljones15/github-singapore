@@ -9,3 +9,5 @@ source github.env
 npm install
 npm start
 ```
+
+The server should run on: http://localhost:8081/
