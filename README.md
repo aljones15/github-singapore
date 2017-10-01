@@ -1,4 +1,6 @@
 # github-singapore
+![alt text](https://github.com/aljones15/github-singapore/demo.png)
+
 Programming Test To Show all Github users in Singapore
 
 If you don't have a github api token then click on your
