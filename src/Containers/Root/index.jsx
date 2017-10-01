@@ -23,8 +23,13 @@ class Root extends React.PureComponent{
            render={({error, props}) => {
              if(error){
                console.log('QueryRenderer -> error');
-               console.error(error);
-               return(<div>Error</div>);
+               console.error(error.source);
+               return(
+                 <div className='section is-danger'>
+                   <h2 className='title'>There was an Error</h2>
+                   <p>Check to see if your github api token is valid</p>
+                   {error.message}
+                 </div>);
              } else if(props){
                return(
                  <div>
