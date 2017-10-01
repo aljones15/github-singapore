@@ -1,5 +1,5 @@
 # github-singapore
-![alt text](https://github.com/aljones15/github-singapore/demo.png)
+![Screen Shot](https://github.com/aljones15/github-singapore/raw/master/demo.png)
 
 Programming Test To Show all Github users in Singapore
 
