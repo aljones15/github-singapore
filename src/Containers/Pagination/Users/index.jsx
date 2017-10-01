@@ -70,10 +70,12 @@ class UsersView extends React.Component {
         className='columns is-multiline'
       >
         {this.makeUsers()}
-        <button
+        {this.props.relay.hasMore() ? <button
           className='column button is-primary is-focused'
           onClick={() => this._loadMore()}
-        > <strong>More</strong> </button>
+          disabled={!this.props.relay.hasMore()}> 
+            <strong>More</strong> </button> : null
+        }
       </div>);
   }
   // _loadMore checks relay if there is more to load and if we are loading then it
