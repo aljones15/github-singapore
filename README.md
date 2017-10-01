@@ -13,3 +13,10 @@ npm start
 ```
 
 The server should run on: http://localhost:8081/
+
+# Stack
+- Webpack
+- Bulma css
+- React
+- GraphQL
+- Relay
